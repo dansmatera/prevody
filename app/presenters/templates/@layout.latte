@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+
+	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Framework Micro-blog</title>
+
+	<link rel="stylesheet" href="{$basePath}/css/style.css">
+</head>
+
+<body>
+
+    {if $user->loggedIn}
+        Přihlášený uživatel: {$user->getIdentity()->name}
+    {/if}
+
+	<ul class="navig">
+		<li><a n:href="Homepage:">Homepage</a></li>
+		{block navig}{/block}
+		{if $user->loggedIn}
+			<li><a n:href="Sign:out">Sign out</a></li>
+		{else}
+			<li><a n:href="Sign:in">Sign in</a></li>
+		{/if}
+        
+        
+    {if $user->loggedIn}  
+        {if $user->isInRole('admin')}
+            <li><a n:href="Veliciny:">Veličiny</a></li>
+        {/if}
+    {/if}
+        
+	</ul>
+
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+	{include content}
+
+	<p class="footer"></p>
+
+	{block scripts}
+	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+	{/block}
+</body>
+</html>
