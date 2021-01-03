@@ -1,0 +1,4 @@
+- Nainstalovat EasyPHP Devserver 17
+- Nainstalujte si Composer
+- Sestavení projektu "composer i" v root adresáøi > vytvoøení Vendor/ 
+- Nastavení DB v local.neon
