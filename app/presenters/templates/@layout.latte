@@ -20,9 +20,10 @@
         <li><a n:href="Priklad:">Náhodný příklad</a></li>
 		{block navig}{/block}
 		{if $user->loggedIn}
-			<li><a n:href="Sign:out">Sign out</a></li>
+            <li><a n:href="Prehledy:">Statistiky</a></li>
+			<li><a n:href="Sign:out">Odhlásit</a></li>
 		{else}
-			<li><a n:href="Sign:in">Sign in</a></li>
+			<li><a n:href="Sign:in">Přihlásit</a></li>
 		{/if}
         
         

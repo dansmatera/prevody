@@ -1,0 +1,27 @@
+{block navig}
+{/block}
+
+{block content}
+    <h1>Převody fyzikálních jednotek</h1>
+    <h2>Statistiky</h2>
+
+    <h3>Počet příkladů celkem</h3>
+    Celkem příkladů: {$stats->celkem}
+    <br>Úspěšnost: {$stats->uspesnost}
+    
+    <h3>Statistiky - dle veličin</h3>
+	<div n:foreach="$stats_veliciny as $stats_velicina">
+		<div>
+            {$stats_velicina->velicina} / {$stats_velicina->celkem} / {$stats_velicina->uspesnost} %
+        </div>
+	</div>
+    
+    <h3>Statistiky - dle převodů</h3>
+	<div n:foreach="$stats_prevody as $stats_prevod">
+		<div>
+            {$stats_prevod->prevod} / {$stats_prevod->celkem} / {$stats_prevod->uspesnost} %
+        </div>
+	</div>
+    
+
+{/block}
