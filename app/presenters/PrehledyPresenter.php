@@ -31,7 +31,7 @@ final class PrehledyPresenter extends Nette\Application\UI\Presenter
             FROM (
                 SELECT COUNT(*) AS celkem,SUM(IF(v.vysledek_id = 1,1,0)) AS spravne
             	FROM vysledky v
-                WHERE ((v.uzivatel_id = ?) OR (? = 3))
+                WHERE ((v.uzivatel_id = ?) OR (? = 1))
              ) res",$uzivatel_id,$uzivatel_id);
         
         $pole = (object)[];
@@ -49,7 +49,7 @@ final class PrehledyPresenter extends Nette\Application\UI\Presenter
     	                   JOIN jednotky zj ON zj.id = p.zdroj_jednotka_id
     	                   JOIN jednotky cj ON cj.id = p.cil_jednotka_id
     	                   JOIN veliciny ve ON ve.id = zj.velicina_id
-                        WHERE ((v.uzivatel_id = ?) OR (? = 3))
+                        WHERE ((v.uzivatel_id = ?) OR (? = 1))
                         GROUP BY ve.nazev
                     ) res
                     ORDER BY 4 DESC",$uzivatel_id,$uzivatel_id);
@@ -67,7 +67,7 @@ final class PrehledyPresenter extends Nette\Application\UI\Presenter
        					   ,COUNT(*) AS celkem
                            ,SUM(IF(v.vysledek_id = 1,1,0)) AS spravne
 	                    FROM vysledky v
-                        WHERE ((v.uzivatel_id = ?) OR (? = 3))
+                        WHERE ((v.uzivatel_id = ?) OR (? = 1))
                         GROUP BY v.prevod_id
                     ) res
                        JOIN prevody p ON p.id = res.prevod_id
