@@ -25,8 +25,8 @@ final class RegistracePresenter extends Nette\Application\UI\Presenter
 	protected function createComponentNewForm(): Form
 	{
 		$form = new Form;
-		$form->addText('username', 'Přezdívka:')->setRequired('Please enter your username.');
-		$form->addPassword('password', 'Heslo:')->setRequired('Please enter your password.');
+		$form->addText('username', 'Přezdívka:')->setRequired('Prosím zadejte přezdívku.');
+		$form->addPassword('password', 'Heslo:')->setRequired('Prosím zadejte heslo.');
 		$form->addSubmit('send', 'Registrovat');
 		$form->onSuccess[] = [$this, 'formSucceeded'];
 		return $form;

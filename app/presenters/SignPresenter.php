@@ -10,21 +10,12 @@ use Nette\Application\UI\Form;
 
 final class SignPresenter extends Nette\Application\UI\Presenter
 {
-	/**
-	 * Sign-in form factory.
-	 */
 	protected function createComponentSignInForm(): Form
 	{
 		$form = new Form;
-		$form->addText('username', 'Nick:')
-			->setRequired('Please enter your username.');
-
-		$form->addPassword('password', 'Password:')
-			->setRequired('Please enter your password.');
-
+		$form->addText('username', 'Nick:')->setRequired('Prosím vyplňte vaši přezdívku.');
+		$form->addPassword('password', 'Password:')->setRequired('Prosím zadejte heslo.');
 		$form->addSubmit('send', 'Přihlásit se');
-
-		// call method signInFormSucceeded() on success
 		$form->onSuccess[] = [$this, 'signInFormSucceeded'];
 		return $form;
 	}
@@ -37,7 +28,7 @@ final class SignPresenter extends Nette\Application\UI\Presenter
 			$this->redirect('Homepage:');
 
 		} catch (Nette\Security\AuthenticationException $e) {
-			$form->addError('Incorrect username or password.');
+			$form->addError('Nesprávné jméno nebo heslo.');
 		}
 	}
 
@@ -45,7 +36,7 @@ final class SignPresenter extends Nette\Application\UI\Presenter
 	public function actionOut(): void
 	{
 		$this->getUser()->logout();
-		$this->flashMessage('You have been signed out.');
+		$this->flashMessage('Byli jste odhlášeni.');
 		$this->redirect('Homepage:');
 	}
 }
