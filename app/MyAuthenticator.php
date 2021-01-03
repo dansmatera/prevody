@@ -26,18 +26,11 @@ class MyAuthenticator implements Nette\Security\IAuthenticator
 		if (!$row) {
 			throw new Nette\Security\AuthenticationException('User not found.');
 		}
-
-        /*
-		if (!$this->passwords->verify($password, $row->password)) {
-			throw new Nette\Security\AuthenticationException('Invalid password.');
-		}
-        */
         
         if($row->heslo !== md5($password)){
             throw new Nette\Security\AuthenticationException('Invalid password.');
         }
         
-        //Pøevod rolí
         switch($row->role_id){
             case 1: $role = 'nereg.uzivatel'; break;
             case 2: $role = 'uzivatel'; break;
