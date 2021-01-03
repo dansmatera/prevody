@@ -1,0 +1,18 @@
+{block navig}
+{/block}
+
+{block content}
+    <h1>Převody fyzikálních jednotek</h1>
+    <h2>Veličiny</h2>
+    
+	<div n:foreach="$veliciny as $velicina">
+		<div>
+            {$velicina->nazev}
+            [<a n:href="Veliciny:edit $velicina->id">Edituj</a>]
+        </div>
+	</div>
+
+    <h3>Přidat novou veličinu</h3>
+    {control newForm}
+    
+{/block}
