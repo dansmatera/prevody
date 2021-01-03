@@ -12,3 +12,13 @@ Pro instalaci je potřeba:
   - dsn: 'mysql:host=127.0.0.1;dbname=jednotky'
 	  user: root
 	  password:
+
+<b>Struktura</b>
+- app/
+	config/ - nastavení DB. Do common je přidán nově authenticator: App\MyAuthenticator pro přihlášení skrze MD5
+	presenters/ - složí pro CONTROLLER a práci s daty	
+		templates/ - jednotlivé stránky a základný @layout pro menu, VIEW
+- sql/	- skript pro vytvoření jednotlivých tabulek
+- www/	- index.php, základ pro aplikaci
+	css/ - defaultní styly
+	
