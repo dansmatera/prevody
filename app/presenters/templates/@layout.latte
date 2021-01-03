@@ -17,6 +17,7 @@
 
 	<ul class="navig">
 		<li><a n:href="Homepage:">Homepage</a></li>
+        <li><a n:href="Homepage:">Náhodný převod</a></li>
 		{block navig}{/block}
 		{if $user->loggedIn}
 			<li><a n:href="Sign:out">Sign out</a></li>
@@ -29,6 +30,7 @@
         {if $user->isInRole('admin')}
             <li><a n:href="Veliciny:">Veličiny</a></li>
             <li><a n:href="Jednotky:">Jednotky</a></li>
+            <li><a n:href="Prevody:">Převody</a></li>
         {/if}
     {/if}
         

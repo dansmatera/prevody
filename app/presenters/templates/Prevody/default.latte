@@ -1,0 +1,23 @@
+{block navig}
+{/block}
+
+{block content}
+    <h1>Převody fyzikálních jednotek</h1>
+    <h2>Převody</h2>
+    
+	<div n:foreach="$prevody as $prevod">
+		<div>
+            {$prevod->definice}   
+            [<a n:href="Prevody:edit $prevod->id">Edituj</a>]
+        </div>
+	</div>
+
+    <h3>Chybějící převody</h3>
+	<div n:foreach="$chybejiciPrevody as $prevod">
+		<div>
+            {$prevod->zdrojova_jednotka} -> {$prevod->cilova_jednotka}    
+            [<a n:href="Prevody:edit null, $prevod->zdroj_jednotka_id, $prevod->cil_jednotka_id">Vytvořit převod</a>]
+        </div>
+	</div>
+    
+{/block}
