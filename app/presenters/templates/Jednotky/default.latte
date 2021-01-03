@@ -1,0 +1,18 @@
+{block navig}
+{/block}
+
+{block content}
+    <h1>Převody fyzikálních jednotek</h1>
+    <h2>Jednotky</h2>
+    
+	<div n:foreach="$jednotky as $jednotka">
+		<div>
+            {$jednotka->nazev}
+            [<a n:href="Jednotky:edit $jednotka->id">Edituj</a>]
+        </div>
+	</div>
+
+    <h3>Přidat novou jednotku</h3>
+    {control newForm}
+    
+{/block}

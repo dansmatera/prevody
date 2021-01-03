@@ -28,7 +28,7 @@
     {if $user->loggedIn}  
         {if $user->isInRole('admin')}
             <li><a n:href="Veliciny:">Veličiny</a></li>
-            <li><a n:href="Jednotky:">Jednotky</a></li>
+            <li><a n:href="Veliciny:">Jednotky</a></li>
         {/if}
     {/if}
         
