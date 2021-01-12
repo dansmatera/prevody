@@ -50,7 +50,7 @@ CREATE TABLE prevody (
     id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT
     ,zdroj_jednotka_id INTEGER REFERENCES jednotky(id)
     ,cil_jednotka_id INTEGER REFERENCES jednotky(id)
-    ,koeficient DECIMAL(19,9) NOT NULL UNSIGNED
+    ,koeficient DECIMAL(19,9) NOT NULL
 );
 INSERT INTO prevody (zdroj_jednotka_id,cil_jednotka_id,koeficient) VALUE (1,2,100);         -- 1m = 100cm
 INSERT INTO prevody (zdroj_jednotka_id,cil_jednotka_id,koeficient) VALUE (2,1,0.01);        -- 1cm = 0.01m
