@@ -55,8 +55,12 @@ final class PrikladPresenter extends Nette\Application\UI\Presenter
         $pole = (object)[];
         
         foreach($results as $result){
+        
+            //Sestavíme dohromady text příkladu, abychom mohli uživatele informovat o chybě
+            $text_prikladu = $result->pocet.$result->zdroj_zkratka.' = '.$result->vypocet_ok.$result->cil_zkratka;
+            
             if($result->procento_chyby > 0.01){
-                $text = 'CHYBA! Správná odpověď byla: '.$result->vypocet_ok.'. Vaše odpověd: '.$result->vypocet_uzivatel;
+                $text = 'CHYBA! Správná odpověď byla: '.$text_prikladu.', Vaše odpověd: '.$result->vypocet_uzivatel.$result->cil_zkratka;
                 $this->flashMessage($text);
                 $vysledek_id = -1;
             }
@@ -68,7 +72,7 @@ final class PrikladPresenter extends Nette\Application\UI\Presenter
             $vysledky['prevod_id'] = $data->prevod_id;
             $user = $this->getUser(); 
             $vysledky['uzivatel_id'] = $user->isLoggedIn() ? $user->getId() : -1;
-            $vysledky['priklad'] = '';
+            $vysledky['priklad'] = $text_prikladu;
             $vysledky['vysledek_id'] = $vysledek_id;
             $this->database->table('vysledky')->insert($vysledky);
         }
@@ -78,7 +82,8 @@ final class PrikladPresenter extends Nette\Application\UI\Presenter
     
 	public function actionDefault(): void
 	{
-        $examples = $this->database->query("
+        //Sestavení query 
+        $query = "
             SELECT
            	    p.id AS prevod_id
                 ,v.nazev AS velicina
@@ -89,11 +94,20 @@ final class PrikladPresenter extends Nette\Application\UI\Presenter
                 ,cj.zkratka AS cilova_jednotka_zkratka
             FROM prevody p
             	JOIN jednotky zj ON zj.id = p.zdroj_jednotka_id
-              JOIN jednotky cj ON cj.id = p.cil_jednotka_id
-              JOIN veliciny v ON v.id = zj.velicina_id
+                JOIN jednotky cj ON cj.id = p.cil_jednotka_id
+                JOIN veliciny v ON v.id = zj.velicina_id
+        ";
+        if ($this->getUser()->isLoggedIn()) {
+            $user = $this->getUser();
+            $user_id = $user->getId();
+            $query .= " JOIN nastaveni n ON n.velicina_id = v.id AND n.uzivatel_id = $user_id AND n.stav_id = 1 ";
+        }
+        $query .= "
             ORDER BY RAND()
-            LIMIT 1            
-        ");
+            LIMIT 1
+        ";
+        
+        $examples = $this->database->query($query);
         $pole = (object)[];
         
         foreach($examples as $example){

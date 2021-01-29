@@ -1,0 +1,22 @@
+{block navig}
+{/block}
+
+{block content}
+    <h1>Nastavení příkladů</h1>
+    
+    <h2>Povolené veličiny</h2>
+    <div n:foreach="$povolene_veliciny as $povolene">
+		<div>
+            [<a n:href="Nastaveni:off $povolene->nastaveni_id">Zakázat</a>] {$povolene->nazev} 
+        </div>
+	</div>
+
+    <h2>Zakázané veličiny</h2>
+    <div n:foreach="$zakazane_veliciny as $zakazane">
+		<div>
+            [<a n:href="Nastaveni:on $zakazane->nastaveni_id">Povolit</a>] {$zakazane->nazev} 
+        </div>
+	</div>
+    
+
+{/block}

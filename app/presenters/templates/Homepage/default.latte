@@ -12,13 +12,14 @@
                 uzivatelska_role
                 <ul>    
                     <li>(1) neregistrovaný uživatel - může si spustit test náhodné jednotky a veličiny</li>
-                    <li>(2) uživatel - taky si pouští testy, ale vidí i své výsledky</li>
+                    <li>(2) uživatel - taky si pouští testy, ale vidí i své výsledky, současně si může nastavit, z jakých jednotek chce být zkoušený.</li>
                     <li>(3) administrátor - vytváří veličiny, jednotky a nastavuje převody a vidí výsledky za všechny lidi dohromady</li>
                 </ul>
             </li>
                 
             <li>veličiny - zde se definují fyzikální veličiny (id, nazev)</li>
             <li>jednotky - zde se definují jednotky, zkratka s vazbou na veličinu (id, velicina_id, nazev, zkratka)</li>
+            <li>nastaveni - zde si uživatel nastavuje, z jakých jednotek chce nebo nechce být testován</li>
             <li>převody - zde je vždy jednotka A a jednotka B a jejich definovaný koeficient (id, zdroj_jednotka_id, cil_jednotka_id, koeficient)</li>
             <li>vysledky - registrovaný uživatel se díky tomu může podívat jaké veličiny mu jak jdou a jak je úspěšný v jakých převodech (id, prevod_id, uzivatel_id, priklad, stav_vysledku_id)</li>
             <li>vysledek - 1 OK, -1 chyba, to je pro vazbu na tabulku výsledky (id, nazev)</li>
