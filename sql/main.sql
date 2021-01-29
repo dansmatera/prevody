@@ -75,3 +75,19 @@ CREATE TABLE vysledky (
     ,priklad VARCHAR(100) NOT NULL 
     ,vysledek_id INTEGER REFERENCES vysledek(id) 
 );     
+
+
+-- Tabulka: Nastavení
+CREATE TABLE nastaveni (
+    id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT
+    ,uzivatel_id INTEGER NOT NULL REFERENCES uzivatele(id)
+    ,velicina_id INTEGER NOT NULL REFERENCES veliciny(id)
+    ,stav_id INTEGER NOT NULL REFERENCES vysledek(id)
+);
+
+-- Nastavíme pro všechny jednotky všem uživatelům ať jsou aktivní
+INSERT INTO nastaveni (uzivatel_id,velicina_id,stav_id)
+SELECT u.id,j.id,1 
+FROM uzivatele u 
+CROSS JOIN jednotky j;
+
